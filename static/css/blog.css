@@ -1,0 +1,297 @@
+/* General Content styles such as links, body text, or headings */
+body {
+    font-size: 16px;
+    line-height: 27px;
+    font-family: 'Open Sans', sans-serif;
+    color: #404b55;
+    background-color: #feffff;
+}
+
+/* Widewrappers that span the whole width of the page */
+
+.masthead {
+/*
+    padding-top: 55px;
+    padding-bottom: 55px;
+*/
+    background-color: #3498db;
+    color: #ecf0f1;
+}
+
+/*subheader underneath the header*/
+.subheader {
+    background-color: #4face9;
+    color: #ecf0f1;
+    font-size: 16px;
+    min-height: 63px;
+}
+
+.containerwrapper {
+    background-color: #feffff;
+}
+
+/* The blog main page boxes */
+.card-custom {
+    background-color: #ececec;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 1px 5px #a8a8a8;
+    -moz-box-shadow: 0px 1px 5px #a8a8a8;
+    box-shadow: 0px 1px 5px #a8a8a8;
+    margin-bottom: 40px;
+}
+
+
+/*
+.card-custom {
+    background-color: #5b5b5b;
+    color: #dfdfdf;
+    box-shadow: 0 4px 8px 0 rgba(91, 91, 91, 0.2), 0 6px 20px 0 rgba(91, 91, 91, 0.19);
+}
+*/
+
+.card-custom a {
+    color: #dfdfdf;
+}
+
+/*
+.card-button {
+    background-color: #4face9;
+    color: #ecf0f1;
+}
+*/
+
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,2989d8+50,207cca+51,7db9e8+100;Blue+Gloss+Default */
+
+
+
+.btn-tales-one {
+    background-color: #4face9;
+    color: #ecf0f1;
+    border-color: #3498db;
+    background-image: -webkit-gradient(linear, left 0%, left 100%, from(#4face9), to(#4face9));
+    background-image: -webkit-linear-gradient(top, #4face9, 0%, #3498db, 100%);
+    background-image: -moz-linear-gradient(top, #3498db 0%, #4face9 100%);
+    background-image: linear-gradient(to bottom, #4face9 0%, #3498db 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc276', endColorstr='#ff3da358', GradientType=0);
+    background-repeat: repeat-x;
+    border-color: #3498db;
+}
+
+.circle-image {
+    width: 60%;
+    height: 200px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-style {
+    text-align: center;
+    border-radius: initial;
+    border: initial;
+}
+
+.card-title {
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+}
+
+.card-text {
+    font-family: MerriweatherRegular;
+    font-size: 20px;
+    line-height: initial;
+}
+
+/* ... aand the main blog article */
+.blog-post {
+    margin-bottom: 90px;
+}
+
+.blog-post header h1 {
+    font-family: 'PT Serif', serif;
+    margin-bottom: 22px;
+}
+
+.blog-post header .lead-image {
+    position: relative;
+}
+
+.blog-post header .lead-image .meta {
+    padding-left: 30px;
+    padding-bottom: 10px;
+    position: absolute;
+    bottom: 15px;
+    background-color: #3794f3;
+    background-color: rgba(55, 148, 243, 0.85);
+    color: #e5e5e5;
+}
+
+.blog-post header .lead-image .meta a {
+    color: #e5e5e5;
+}
+
+@media (max-width: 979px) {
+    .blog-post header .lead-image .meta {
+        position: relative;
+        bottom: 0;
+    }
+}
+
+.blog-post header .lead-image .meta .author,
+.blog-post header .lead-image .meta .date,
+.blog-post header .lead-image .meta .comments {
+    float: left;
+    margin: 10px 55px 0 0;
+}
+
+.blog-post header .lead-image .meta .author .data,
+.blog-post header .lead-image .meta .date .data,
+.blog-post header .lead-image .meta .comments .data {
+    line-height: 30px;
+}
+
+@media (min-width: 980px) and (max-width: 1199px) {
+
+    .blog-post header .lead-image .meta .author,
+    .blog-post header .lead-image .meta .date,
+    .blog-post header .lead-image .meta .comments {
+        margin-right: 20px;
+    }
+}
+
+.blog-post header .lead-image .meta .author i,
+.blog-post header .lead-image .meta .date i,
+.blog-post header .lead-image .meta .comments i {
+    font-size: 30px;
+    float: left;
+    margin-right: 10px;
+}
+
+.blog-post .body {
+    margin-top: 20px;
+}
+
+@media (min-width: 1200px) {
+    .blog-post .body {
+        padding-right: 30px;
+    }
+}
+
+.blog-post .body p {
+    margin-bottom: 20px;
+    color: #dfdfdf
+}
+
+/* Comments on blog detail page */
+aside.comments,
+aside.create-comment {
+    margin-bottom: 100px;
+}
+
+aside.comments hr,
+aside.create-comment hr {
+    width: 515px;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-color: #ced5db;
+    margin-bottom: 130px;
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+    aside.comments hr,
+    aside.create-comment hr {
+        width: 415px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    aside.comments hr,
+    aside.create-comment hr {
+        width: 100%;
+    }
+}
+
+aside.comments h2,
+aside.create-comment h2 {
+    text-align: center;
+    font-weight: normal;
+    margin-bottom: 130px;
+}
+
+aside.comments h2 i,
+aside.create-comment h2 i {
+    font-size: 36px;
+}
+
+aside.comments .comment {
+    margin: 130px 0 0 0;
+}
+
+aside.comments .comment.reply {
+    margin-left: 100px;
+}
+
+aside.comments .comment header img {
+    float: left;
+    border-radius: 100px;
+}
+
+aside.comments .comment header .meta {
+    margin-left: 100px;
+    font-size: 14px;
+}
+
+aside.comments .comment header .meta h3 {
+    margin: 10px 0 0 0;
+    line-height: 27px;
+}
+
+aside.comments .comment header .meta h3 a {
+    color: #5b6268;
+}
+
+aside.comments .comment header .meta a {
+    color: #55a773;
+}
+
+aside.comments .comment .body {
+    margin-top: 10px;
+    margin-left: 100px;
+}
+
+/* Blog aside widgets */
+.aside-widget {
+    margin-bottom: 100px;
+}
+
+.aside-widget header {
+    background-image: -webkit-gradient(linear, left 0%, left 100%, from(#3498db), to(#4face9));
+    background-image: -webkit-linear-gradient(top, #3498db, 0%, #4face9, 100%);
+    background-image: -moz-linear-gradient(top, #3498db 0%, #4face9 100%);
+    background-image: linear-gradient(to bottom, #3498db 0%, #4face9 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff6f5f5', endColorstr='#ffebeaea', GradientType=0);
+    border: 1px #ced5db solid;
+    color: #feffff;
+}
+
+.aside-widget header h3 {
+    font-size: 24px;
+    padding: 10px 20px 3px 20px;
+    margin-top: 0;
+    color: #feffff;
+}
+
+.aside-widget .body {
+    margin-top: 30px;
+    padding-left: 20px;
+}
+
+.aside-widget a {
+    color: #5b6268;
+}
