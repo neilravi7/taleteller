@@ -1,0 +1,57 @@
+{% extends 'auth_base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="card-body p-5">
+    <!--    <h1 class="fs-4 card-title mb-4">Profile</h1>-->
+    <div class="row ">
+        <form method="POST" class="needs-validation shadow" novalidate="" autocomplete="off">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <h1 class="fs-4 card-title mb-1">Add New Category:</h1>
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="mb-1">
+                        <label class=" text-muted" for="{{ form.name.auto_id }}">{{ form.category.label}}</label>
+                        {{form.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 d-grid gap-2 col-6 mx-auto">
+                <button type="submit" class="btn-lg btn-tales-one">
+                    Add Category
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container p-3 shadow-lg " style="border:1px solid #3ab159;">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if all_category %}
+        {% for category_obj in all_category %}
+        <div class="col">
+            <div class="card rounded h-100 bg-dark shadow p-2 ">
+                <img src="{{category_obj.image}}" class="card-img-top rounded" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-white">{{category_obj.name}}</h5>
+                    <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                        content. This content is a little bit longer.</p> -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col">
+            <div class="card rounded h-100 bg-dark shadow p-2">
+                <img src="https://i.picsum.photos/id/1005/200/300.jpg?hmac=ZygrmRTuNYz9HivXcWqFGXDRVJxIHzaS-8MA0I3NKBw"
+                    class="card-img rounded" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-white">No content</h5>
+                    <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                        content. This content is a little bit longer.</p> -->
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

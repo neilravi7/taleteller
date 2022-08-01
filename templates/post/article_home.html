@@ -1,0 +1,125 @@
+{% extends 'new_base.html' %}
+{% block content %}
+{% for article in articles %}
+<article class="card mb-4" >
+    <div class="row card-body card_start">
+        <div class="col-md-4 mb-4 mb-md-0">
+            <div class="post-slider slider-sm slick-initialized slick-slider">
+                <div class="slick-list draggable">
+                    <div class="slick-track" style="opacity: 1; width: 207px; transform: translate3d(0px, 0px, 0px);">
+                        <img src="{{article.image}}" class="card-img"
+                            alt="post-thumb" style="height: 200px; object-fit: cover; width: 207px;"
+                            data-slick-index="0" aria-hidden="false" tabindex="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3 class="h4 mb-3 post-title">{{article.title}}</h3>
+            <ul class="card-meta list-inline">
+                <li class="list-inline-item">
+                    <ion-icon name="alarm-outline"></ion-icon>{{article.read_time}} Min To Read
+                </li>
+                <li class="list-inline-item">
+                    <ion-icon name="calendar-outline"></ion-icon>{{article.date_published|date:"d M Y"}}
+                </li>
+                <!-- Tags  -->
+                <!-- <li class="list-inline-item">
+                    <ul class="card-meta-tag list-inline">
+                        <li class="list-inline-item"><a href="tags.html">Decorate</a></li>
+                        <li class="list-inline-item"><a href="tags.html">Creative</a></li>
+                    </ul>
+                </li> -->
+            </ul>
+            <p>{{article.body|truncatewords:25}}</p>
+            <a href="{{article.get_absolute_url}}" class="btn btn-outline-success">show more</a>
+        </div>
+    </div>
+</article>
+<!-- <div class="col-lg-12">
+        <div class="card p-3 m-1">
+            <a href="#!"><img class="card-img-top rounded" src="{{article.image}}"
+                    alt="..." /></a>
+            <div class="card-body">
+                <div class="small text-muted">{{article.date_published|date:"d M Y"}}</div>
+                <h2 class="card-title h4">{{article.title}}</h2>
+                <p class="card-text">{{article.body|truncatewords:25}}</p>
+                <a class="btn btn-outline-success" href="{{article.get_absolute_url}}"">Show more →</a>
+            </div>
+        </div>
+    </div> -->
+{% endfor %}
+<!-- </div> -->
+<!-- Pagination-->
+<nav aria-label="Pagination">
+    <hr class="my-0" />
+    <ul class="pagination justify-content-center my-4">
+        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+        <li class="page-item"><a class="page-link" href="#!">2</a></li>
+        <li class="page-item"><a class="page-link" href="#!">3</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+        <li class="page-item"><a class="page-link" href="#!">15</a></li>
+        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+    </ul>
+</nav>
+{% endblock %}
+{% block aside %}
+<div class="widget">
+    <h4 class="widget-title"><span>Search</span></h4>
+    <form method="GET" action="{% url 'post:search'%}"class="needs-validation shadow" novalidate="" autocomplete="off">
+        {% csrf_token %}
+        <div class="input-group">
+            {{form.search}}
+            <button class="btn btn-primary btn-sm" id="button-search" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+
+<!-- categories -->
+<div class="widget widget-categories">
+    <h4 class="widget-title"><span>Categories</span></h4>
+    <ul class="list-unstyled widget-list">
+        {% for category in categories %}
+            <li><a href="tags.html" class="d-flex">{{category|title}} <small class="ml-auto">(0)</small></a></li>
+        {% endfor %}
+      <!-- <li><a href="tags.html" class="d-flex">Demo <small class="ml-auto">(1)</small></a></li>
+      <li><a href="tags.html" class="d-flex">Elements <small class="ml-auto">(1)</small></a></li>
+      <li><a href="tags.html" class="d-flex">Food <small class="ml-auto">(1)</small></a></li>
+      <li><a href="tags.html" class="d-flex">Microwave <small class="ml-auto">(1)</small></a></li>
+      <li><a href="tags.html" class="d-flex">Natural <small class="ml-auto">(3)</small></a></li>
+      <li><a href="tags.html" class="d-flex">Newyork city <small class="ml-auto">(1)</small></a></li>
+      <li><a href="tags.html" class="d-flex">Nice <small class="ml-auto">(1)</small></a></li>
+      <li><a href="tags.html" class="d-flex">Tech <small class="ml-auto">(2)</small></a></li>
+      <li><a href="tags.html" class="d-flex">Videography <small class="ml-auto">(1)</small></a></li>
+      <li><a href="tags.html" class="d-flex">Vlog <small class="ml-auto">(1)</small></a></li>
+      <li><a href="tags.html" class="d-flex">Wondarland <small class="ml-auto">(1)</small></a></li> -->
+    </ul>
+  </div>
+
+<div class="widget">
+    <h4 class="widget-title"><span>Tags</span></h4>
+    <ul class="list-inline widget-list-inline widget-card">
+        {% for tag in tags %}
+            <li class="list-inline-item"><a href="tags.html">{{tag|title}}</a></li>
+        {% endfor %}
+
+      <!-- <li class="list-inline-item"><a href="tags.html">City</a></li>
+      <li class="list-inline-item"><a href="tags.html">Color</a></li>
+      <li class="list-inline-item"><a href="tags.html">Creative</a></li>
+      <li class="list-inline-item"><a href="tags.html">Decorate</a></li>
+      <li class="list-inline-item"><a href="tags.html">Demo</a></li>
+      <li class="list-inline-item"><a href="tags.html">Elements</a></li>
+      <li class="list-inline-item"><a href="tags.html">Fish</a></li>
+      <li class="list-inline-item"><a href="tags.html">Food</a></li>
+      <li class="list-inline-item"><a href="tags.html">Nice</a></li>
+      <li class="list-inline-item"><a href="tags.html">Recipe</a></li>
+      <li class="list-inline-item"><a href="tags.html">Season</a></li>
+      <li class="list-inline-item"><a href="tags.html">Taste</a></li>
+      <li class="list-inline-item"><a href="tags.html">Tasty</a></li>
+      <li class="list-inline-item"><a href="tags.html">Vlog</a></li>
+      <li class="list-inline-item"><a href="tags.html">Wow</a></li> -->
+    </ul>
+  </div>
+  
+{% endblock %}

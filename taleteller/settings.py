@@ -33,12 +33,19 @@ ALLOWED_HOSTS = ['taleteller.herokuapp.com', 'localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # core apps
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
+    # internals apps
+    'account.apps.AccountConfig',
+    'post.apps.PostConfig',
+    # third party apps
+    "taggit",
+    
 ]
 
 MIDDLEWARE = [
@@ -82,23 +89,25 @@ WSGI_APPLICATION = 'taleteller.wsgi.application'
 
 DATABASES = {}
 
-if os.environ.get('DATABASE_URL') is None:
-    # Local Database
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ['POSTGRES_DB'],
-            'USER': os.environ['POSTGRES_USER'],
-            'PASSWORD': os.environ['POSTGRES_PASSWORD'],
-            'PORT': os.environ['POSTGRES_PORT'],
-            'HOST': os.environ['POSTGRES_HOST']            
-        }
-    }
-else:
-    # Production Database
-    # DATABASES['default'] = "default"
-    db_from_env = dj_database_url.config(conn_max_age=600)
-    DATABASES['default'] = db_from_env
+# if os.environ.get('DATABASE_URL') is None:
+#     # Local Database
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': os.environ['POSTGRES_DB'],
+#             'USER': os.environ['POSTGRES_USER'],
+#             'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+#             'PORT': os.environ['POSTGRES_PORT'],
+#             'HOST': os.environ['POSTGRES_HOST']            
+#         }
+#     }
+# else:
+# Production Database
+# DATABASES['default'] = "default"
+
+# Database connection via connection string
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'] = db_from_env
 
 
 
@@ -147,3 +156,5 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'article/home'

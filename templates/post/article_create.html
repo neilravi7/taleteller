@@ -1,0 +1,62 @@
+{% extends 'form_base.html' %}
+{% block title %}Create Post{% endblock %}
+{% block form_content %}
+<!--    <h1 class="fs-4 card-title mb-4">Profile</h1>-->
+<div class="row ">
+    <form method="POST" class="needs-validation shadow" novalidate="" autocomplete="off">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <h1 class="fs-4 card-title mb-1">Create Post:</h1>
+        <!-- "category", "title", "image_credit", "body", "tags", -->
+        <div class="row g-3">
+            <div class="col-5">
+                <div class="mb-1">
+                    <label class=" text-muted" for="{{ form.title.auto_id }}">{{ form.title.label }}</label>
+                    {{form.title}}
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="mb-1">
+                    <label class="text-muted" for="{{ form.category.auto_id }}">{{ form.category.label }}</label>
+                    {{form.category}}
+                </div>
+            </div>
+        </div>
+        <!-- <h1 class="fs-4 card-title mb-1">Location:</h1> -->
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="mb-1">
+                    <label class=" text-muted" for="{{ form.body.auto_id }}">{{ form.body.label }}</label>
+                    {{form.body}}
+                </div>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-4">
+                <div class="mb-1">
+                    <label class="mb-1 text-muted" for="{{ form.image_credit.auto_id }}">{{form.image_credit.label}}</label>
+                    {{form.image_credit}}
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="mb-1">
+                    <label class=" text-muted" for="{{ form.tags.auto_id }}">{{ form.tags.label }}</label>
+                    {{form.tags}}
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="mb-1">
+                    <label class=" text-muted" for="{{ form.status.auto_id }}">{{ form.status.label }}</label>
+                    {{form.status}}
+                </div>
+            </div>
+
+        </div>
+        <div class="mt-2 d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-primary btn-lg">
+                Register
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

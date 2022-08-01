@@ -1,0 +1,126 @@
+{% extends 'form_base.html' %}
+{% block title %}Profile Update{% endblock %}
+{% block form_content %}
+<div class="row">
+    <form method="POST" class="needs-validation" novalidate="" autocomplete="off">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="row g-3">
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    {{form.first_name}}
+                    <!-- <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"> -->
+                    <label for="{{ form.first_name.auto_id }}">{{ form.first_name.label }}</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    {{form.last_name}}
+                    <label for="{{ form.last_name.auto_id }}">{{ form.last_name.label }}</label>
+                  </div>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-3">
+                <div class="form-floating mb-3">
+                    {{form.job_title}}
+                    <!-- <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"> -->
+                    <label for="{{ form.job_title.auto_id }}">{{ form.job_title.label }}</label>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="form-floating mb-3">
+                    {{form.bio}}
+                    <label for="{{ form.bio.auto_id }}">{{ form.bio.label }}</label>
+                  </div>
+            </div>
+        </div>
+        <!-- <h5 class="card-title mb-1">Location:</h5> -->
+        <div class="row g-3">
+            <div class="col-9">
+                <div class="form-floating mb-3">
+                    {{form.address}}
+                    <label for="{{ form.address.auto_id }}">{{ form.address.label }}</label>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-floating mb-3">
+                    {{form.city}}
+                    <label for="{{ form.city.auto_id }}">{{ form.city.label }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-4">
+                <div class="form-floating mb-3">
+                    {{form.state}}
+                    <label class="mb-1" for="{{ form.state.auto_id }}">{{ form.state.label }}</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-floating mb-3">
+                    {{form.country}}
+                    <label class="mb-1 text-muted" for="{{ form.country.auto_id }}">{{ form.country.label }}</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-floating mb-3">
+                    {{form.zip_code}}
+                    <label class="mb-1 text-muted" for="{{ form.zip_code.auto_id }}">{{ form.zip_code.label }}</label>
+                </div>
+            </div>
+        </div>
+        <!-- <h1 class="fs-4 card-title mb-1">Social:</h1> -->
+        <div class="row g-3">
+            <div class="col-4">
+                <div class="form-floating mb-3">
+                    {{form.twitter_url}}
+                    <label class="mb-1 text-muted" for="{{ form.twitter_url.auto_id }}">{{ form.twitter_url.label}}</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-floating mb-3">
+                    {{form.facebook_url}}
+                    <label class="mb-1 text-muted" for="{{ form.facebook_url.auto_id }}">{{ form.facebook_url.label}}</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-floating mb-3">
+                    {{form.instagram_url}}
+                    <label class="mb-1 text-muted" for="{{ form.instagram_url.auto_id }}">{{ form.instagram_url.label}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="form-floating mb-3">
+                    {{form.image}}
+                    <label class="mb-1 text-muted" for="{{ form.image.label.auto_id }}">{{ form.image.label}}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-3 d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-success">
+                Update
+            </button>
+        </div>
+        <!--
+            <div class="mb-3">
+                                 <label class="mb-2 text-muted" for="name">Name</label> 
+                <label class="mb-2 text-muted" for="{{ field.auto_id }}">{{ field.label }}</label>
+                {{ field }}
+                <div class="invalid-feedback">
+                    {{field.label}} is required
+                </div>
+            </div>
+            <div class="align-items-center d-flex">
+                <button type="submit" class="btn btn-tales-one ms-auto">
+                    Register
+                </button>
+            </div>
+-->
+
+    </form>
+</div>
+{% endblock %}

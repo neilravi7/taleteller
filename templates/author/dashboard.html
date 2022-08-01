@@ -1,0 +1,273 @@
+{% extends 'new_base.html'%}
+{% block subheader %}
+<div class="row">
+  <!-- Column -->
+  <div class="col-md-6 col-lg-6 col-xl-3">
+      <div class="card m-b-30">
+          <div class="card-body">
+              <div class="d-flex flex-row">
+                  <div class="col-3 align-self-center">
+                      <div class="round">
+                          <i class="mdi mdi-webcam"></i>
+                      </div>
+                  </div>
+                  <div class="col-6 align-self-center text-center">
+                      <div class="m-l-10">
+                          <h5 class="mt-0 round-inner">Total Post</h5>
+                          <p class="mb-0 text-muted">{{articles|length}}</p>                                                                 
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Column -->
+  <!-- Column -->
+  <div class="col-md-6 col-lg-6 col-xl-3">
+    <div class="card m-b-30">
+        <div class="card-body">
+            <div class="d-flex flex-row">
+                <div class="col-3 align-self-center">
+                    <div class="round">
+                        <i class="mdi mdi-webcam"></i>
+                    </div>
+                </div>
+                <div class="col-6 align-self-center text-center">
+                    <div class="m-l-10">
+                        <h5 class="mt-0 round-inner">Published Post</h5>
+                        <p class="mb-0 text-muted">{{published_articles|length}}</p>                                                                 
+                    </div>
+                </div>
+                <!-- <div class="col-3 align-self-end align-self-center">
+                    <h6 class="m-0 float-right text-center text-danger"> <i class="mdi mdi-arrow-down"></i> <span>5.26%</span></h6>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- Column -->
+  <!-- Column -->
+  <div class="col-md-6 col-lg-6 col-xl-3">
+    <div class="card m-b-30">
+        <div class="card-body">
+            <div class="d-flex flex-row">
+                <div class="col-3 align-self-center">
+                    <div class="round">
+                        <i class="mdi mdi-webcam"></i>
+                    </div>
+                </div>
+                <div class="col-6 align-self-center text-center">
+                    <div class="m-l-10">
+                        <h5 class="mt-0 round-inner">Drafted Post</h5>
+                        <p class="mb-0 text-muted">{{drafted_articles|length}}</p>                                                                 
+                    </div>
+                </div>
+                <!-- <div class="col-3 align-self-end align-self-center">
+                    <h6 class="m-0 float-right text-center text-danger"> <i class="mdi mdi-arrow-down"></i> <span>5.26%</span></h6>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- Column -->
+  <!-- Column -->
+  <div class="col-md-6 col-lg-6 col-xl-3">
+    <div class="card m-b-30">
+        <div class="card-body">
+            <div class="d-flex flex-row">
+                <div class="col-3 align-self-center">
+                    <div class="round">
+                        <i class="mdi mdi-webcam"></i>
+                    </div>
+                </div>
+                <div class="col-6 align-self-center text-center">
+                    <div class="m-l-10">
+                        <h5 class="mt-0 round-inner">Deleted Post</h5>
+                        <p class="mb-0 text-muted">{{deleted_articles|length}}</p>                                                                 
+                    </div>
+                </div>
+                <!-- <div class="col-3 align-self-end align-self-center">
+                    <h6 class="m-0 float-right text-center text-danger"> <i class="mdi mdi-arrow-down"></i> <span>5.26%</span></h6>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- Column -->
+</div>
+{% endblock %}
+{% block content %}
+{% for article in articles %}
+<div class="card mb-2">
+  <div class="row g-0">
+    <div class="col-md-3">
+      <img src="https://picsum.photos/150?random={{article.id}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h4 class="card-title">{{article.title}}</h4>
+        <div class="d-flex p-1 ">
+          <ul class="card-meta list-inline mb-0">
+            <li class="list-inline-item mb-0">
+              <ion-icon name="calendar-outline"></ion-icon>
+              </ion-icon>{{article.date_published|date:"d M Y"}}
+            </li>
+            <li class="list-inline-item mb-0">
+              <ion-icon name="stopwatch-outline"></ion-icon>2 Min To Read
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="d-flex justify-content-center">
+        {% if article.status == 'PUBLISHED' %}
+        <p class="text-success" style="font-size:small;">PUBLISHED<ion-icon name="checkmark-circle"
+            class="text-success m-2"></ion-icon>
+        </p>
+        {% elif article.status == 'DRAFTED' %}
+        <p class="text-warning" style="font-size:small;">DRAFTED</p>
+        {% else %}
+        <p class="text-danger" style="font-size:small;">DELETED<ion-icon name="close-circle-sharp"
+            class="text-danger m-2"></ion-icon>
+        </p>
+        {% endif %}
+
+      </div>
+      <div class="d-flex justify-content-center">
+        <!-- Button trigger modal -->
+        <a role="button" data-bs-toggle="modal" href="#{{article.slug}}-preview">
+          <i>
+            <ion-icon class="text-primery m-2" name="reader-sharp"></ion-icon>
+          </i>
+        </a>
+        <a href="{% url 'post:article_update' article.slug %}">
+          <ion-icon class="text-warning m-2" name="create-sharp"></ion-icon>
+        </a>
+        <!-- <a role="button" data-bs-toggle="modal" href="#{{article.slug}}-update">
+              <i><ion-icon class="text-warning m-2" name="create-sharp"></ion-icon></i>
+            </a> -->
+        <a role="button" data-bs-toggle="modal" href="#{{article.slug}}-delete">
+          <i>
+            <ion-icon class="text-danger m-2" name="trash-bin-sharp"></ion-icon>
+          </i>
+        </a>
+        <!-- end button -->
+        <!-- model content view -->
+        <div class="modal fade" id="{{article.slug}}-preview" tabindex="-1" aria-labelledby="ModalLabel-{{article.pk}}"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="fw-bolder mb-1">{{article.title}}</h4>
+                <!-- <h5 class="modal-title" id="ModalLabel-preview-{{article.pk}}">{{article.title}}</h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <article>
+                  <!-- Post header-->
+                  <header>
+                    <!-- Post title-->
+                    <!-- <h4 class="fw-bolder mb-1">{{article.title}}</h4> -->
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">Posted on {{article.date_published|date:"d M Y"}} by
+                      {{article.author.username }}</div>
+                  </header>
+                  <!-- Preview image figure-->
+                  <figure class=""><img class="img-fluid rounded" src="{{article.image}}" alt="..." /></figure>
+                  <!-- Post content-->
+                  <section class="mb-1">
+                    <p class="fs-5">{{ article.body}}</p>
+                    <!-- <p class="fs-5 mb-4">The universe is large and old, and the ingredients for life as we know it are
+                              everywhere, so there's no reason to think that Earth would be unique in that regard. Whether of not the
+                              life became intelligent is a different question, and we'll see if we find that.</p>
+                          <p class="fs-5 mb-4">If you get asteroids about a kilometer in size, those are large enough and carry enough
+                              energy into our system to disrupt transportation, communication, the food chains, and that can be a
+                              really bad day on Earth.</p>
+                          <h2 class="fw-bolder mb-4 mt-5">I have odd cosmic thoughts every day</h2>
+                          <p class="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day
+                              and I realized I could hold them to myself or share them with people who might be interested.</p>
+                          <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there
+                              because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running
+                              water. It's bone dry today. Something bad happened there as well.</p> -->
+                  </section>
+                </article>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- model view end  -->
+        <!-- model content update -->
+        <div class="modal fade" id="{{article.slug}}-update" tabindex="-1" aria-labelledby="ModalLabel-{{article.pk}}"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel-update-{{article.pk}}">Move to trash</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ****
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- model end  -->
+        <!-- model content delete -->
+        <div class="modal fade" id="{{article.slug}}-delete" tabindex="-1" aria-labelledby="ModalLabel-{{article.pk}}"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel-delete-{{article.pk}}">Move to trash</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Do you want to move in to trash this article?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="{% url 'post:article_delete' article.slug %}" class="btn btn-primary">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- model end  -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<!-- All Post Content End -->
+{% endblock %}
+{% block aside%}
+<div class="widget widget-about">
+  <h4 class="widget-title">Hi, I am {{request.user.username}}!</h4>
+  <img class="rounded-circle img-fluid" style="width: 150px;" src="{{request.user.authors_profile.image}}" alt="avatar">
+  <div class="d-flex justify-content-center mb-1">
+    <p>Bio: {{request.user.authors_profile.bio}}</p>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <ul class="card-meta list-inline mb-0">
+      <li class="list-inline-item mb-0">
+        <ion-icon name="location-outline"></ion-icon>{{request.user.authors_profile.address}},
+        {{request.user.authors_profile.city}}, {{request.user.authors_profile.state}},
+        {{request.user.authors_profile.country}}
+      </li>
+    </ul>
+  </div>
+  <div class="d-flex justify-content-center mt-2">
+    <a class="btn btn-outline-primary  btn-sm" href='{% url "account:update_profile"%}'>Update My Profile</a>
+  </div>
+</div>
+{% endblock %}
