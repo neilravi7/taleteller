@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
-from django.views.generic import View
+from django.views.generic import View, ListView
 from django.views.generic.edit import CreateView
 from django.contrib.auth import views as auth_view
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,6 +11,7 @@ from .forms import UserRegisterForm, UserLoginForm, ProfileForm
 from django.contrib import messages
 from post.models.author_models import Profile
 from post.models.post_models import Article
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -67,11 +68,9 @@ class UserLoginView(View):
                     f"are not valid username and password !!! Please "
                     f"enter a valid username and password."
                 )
-                print(dir())
                 return render(request, self.template_name, self.context)
         else:
             messages.error(request, f"Invalid username and password")
-            print(dir())
             return render(request, self.template_name, self.context)      
 
 
@@ -94,17 +93,20 @@ class UserLogout(SuccessMessageMixin, auth_view.LogoutView):
         return reverse('account:login')
 
 # Author Dashboard View 
-class AuthorDashboardView(LoginRequiredMixin, View):
-    context = {}
+class AuthorDashboardView(LoginRequiredMixin, ListView):
+    model = Article
     template_name = "author/dashboard.html"
+    paginate_by = 5
+    queryset = Article.objects.all()
     
-    def get(self, request):
-        articles = Article.objects.filter(author=request.user)
-        self.context["articles"] = articles
-        self.context["published_articles"] = articles.filter(status=Article.PUBLISHED, deleted=False)
-        self.context["drafted_articles"] = articles.filter(status=Article.DRAFTED)
-        self.context["deleted_articles"] = articles.filter(deleted=True)
-        return render(request, self.template_name, self.context)
+    def get_context_data(self, *args, **kwargs):
+        context = super(AuthorDashboardView, self).get_context_data(**kwargs)
+        articles = self.queryset.filter(author=self.request.user)
+        context["articles"] = articles
+        context["published_articles"] = articles.filter(status=Article.PUBLISHED, deleted=False)
+        context["drafted_articles"] = articles.filter(status=Article.DRAFTED)
+        context["deleted_articles"] = articles.filter(deleted=True)
+        return context
 
 
 # Profile Update View
@@ -136,7 +138,7 @@ class AuthorProfile(LoginRequiredMixin, View):
                 request, 
                 f"Your Account has successfully been updated"
             )
-            return HttpResponseRedirect(reverse('post:profile'))
+            return HttpResponseRedirect(reverse('account:dashboard'))
         else:
             profile_form = ProfileForm(
                 instance = self.request.user.authors_profile

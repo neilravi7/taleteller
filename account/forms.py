@@ -23,7 +23,6 @@ class UserRegisterForm(UserCreationForm):
             )
 
 
-
 class UserLoginForm(AuthenticationForm):
     
     error_css_class = 'invalid-feedback'
@@ -32,7 +31,6 @@ class UserLoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         # Updating forms attributes
         for field in self.fields:
-            print(field)
             new_data = {
                 "class": 'form-control',
             }

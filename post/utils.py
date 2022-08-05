@@ -23,3 +23,6 @@ def read_time(html_string):
     # read_time = str(datetime.timedelta(seconds=read_time_sec))
     # read_time = str(datetime.timedelta(minutes=read_time_min))
     return int(read_time_min)
+
+def text_to_paragraph(text_content):
+    return text_content.split("\r\n\r\n")

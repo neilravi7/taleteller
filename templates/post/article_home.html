@@ -24,45 +24,65 @@
                     <ion-icon name="calendar-outline"></ion-icon>{{article.date_published|date:"d M Y"}}
                 </li>
                 <!-- Tags  -->
-                <!-- <li class="list-inline-item">
+                <li class="list-inline-item">
                     <ul class="card-meta-tag list-inline">
-                        <li class="list-inline-item"><a href="tags.html">Decorate</a></li>
-                        <li class="list-inline-item"><a href="tags.html">Creative</a></li>
+                        {% for tag in article.tags.all %}
+                            <li class="list-inline-item"><a href="{% url 'post:search' %}?search_type=tags&search={{tag|urlencode}}">{{tag.name|title}}</a></li>
+                        {% endfor %}
                     </ul>
-                </li> -->
+                </li>
             </ul>
             <p>{{article.body|truncatewords:25}}</p>
             <a href="{{article.get_absolute_url}}" class="btn btn-outline-success">show more</a>
         </div>
     </div>
 </article>
-<!-- <div class="col-lg-12">
-        <div class="card p-3 m-1">
-            <a href="#!"><img class="card-img-top rounded" src="{{article.image}}"
-                    alt="..." /></a>
-            <div class="card-body">
-                <div class="small text-muted">{{article.date_published|date:"d M Y"}}</div>
-                <h2 class="card-title h4">{{article.title}}</h2>
-                <p class="card-text">{{article.body|truncatewords:25}}</p>
-                <a class="btn btn-outline-success" href="{{article.get_absolute_url}}"">Show more →</a>
-            </div>
-        </div>
-    </div> -->
 {% endfor %}
-<!-- </div> -->
-<!-- Pagination-->
+
+<!-- Pagination Ki Ganit -->
 <nav aria-label="Pagination">
     <hr class="my-0" />
     <ul class="pagination justify-content-center my-4">
-        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-        <li class="page-item"><a class="page-link" href="#!">2</a></li>
-        <li class="page-item"><a class="page-link" href="#!">3</a></li>
-        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-        <li class="page-item"><a class="page-link" href="#!">15</a></li>
-        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" aria-disabled="true">Newer</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+        </li>
+        {% endif %}
+        {% with ''|center:page_obj.paginator.num_pages as range %}
+        {% for _ in range %}
+            {% if forloop.counter == page_obj.number %}
+                <li class="page-item active">
+                    <a class="page-link" href="?page={{ forloop.counter }}">
+                        {{ forloop.counter }}
+                    </a>
+                </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ forloop.counter }}">
+                    {{ forloop.counter }}
+                </a>
+            </li>
+            {% endif%}
+        {% endfor %}
+        {% endwith %}
+        
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Older</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Older</a>
+        </li>
+        {% endif %}
     </ul>
 </nav>
+<!-- Pagination ki ganit end  -->
+
 {% endblock %}
 {% block aside %}
 <div class="widget">
@@ -81,19 +101,8 @@
     <h4 class="widget-title"><span>Categories</span></h4>
     <ul class="list-unstyled widget-list">
         {% for category in categories %}
-            <li><a href="tags.html" class="d-flex">{{category|title}} <small class="ml-auto">(0)</small></a></li>
+            <li><a href="{% url 'post:search' %}?search_type=categories&search={{category|urlencode}}" class="d-flex">{{category|title}} <small class="ml-auto">(0)</small></a></li>
         {% endfor %}
-      <!-- <li><a href="tags.html" class="d-flex">Demo <small class="ml-auto">(1)</small></a></li>
-      <li><a href="tags.html" class="d-flex">Elements <small class="ml-auto">(1)</small></a></li>
-      <li><a href="tags.html" class="d-flex">Food <small class="ml-auto">(1)</small></a></li>
-      <li><a href="tags.html" class="d-flex">Microwave <small class="ml-auto">(1)</small></a></li>
-      <li><a href="tags.html" class="d-flex">Natural <small class="ml-auto">(3)</small></a></li>
-      <li><a href="tags.html" class="d-flex">Newyork city <small class="ml-auto">(1)</small></a></li>
-      <li><a href="tags.html" class="d-flex">Nice <small class="ml-auto">(1)</small></a></li>
-      <li><a href="tags.html" class="d-flex">Tech <small class="ml-auto">(2)</small></a></li>
-      <li><a href="tags.html" class="d-flex">Videography <small class="ml-auto">(1)</small></a></li>
-      <li><a href="tags.html" class="d-flex">Vlog <small class="ml-auto">(1)</small></a></li>
-      <li><a href="tags.html" class="d-flex">Wondarland <small class="ml-auto">(1)</small></a></li> -->
     </ul>
   </div>
 
@@ -101,24 +110,8 @@
     <h4 class="widget-title"><span>Tags</span></h4>
     <ul class="list-inline widget-list-inline widget-card">
         {% for tag in tags %}
-            <li class="list-inline-item"><a href="tags.html">{{tag|title}}</a></li>
+            <li class="list-inline-item"><a href="{% url 'post:search' %}?search_type=tags&search={{tag|urlencode}}">{{tag|title}}</a></li>
         {% endfor %}
-
-      <!-- <li class="list-inline-item"><a href="tags.html">City</a></li>
-      <li class="list-inline-item"><a href="tags.html">Color</a></li>
-      <li class="list-inline-item"><a href="tags.html">Creative</a></li>
-      <li class="list-inline-item"><a href="tags.html">Decorate</a></li>
-      <li class="list-inline-item"><a href="tags.html">Demo</a></li>
-      <li class="list-inline-item"><a href="tags.html">Elements</a></li>
-      <li class="list-inline-item"><a href="tags.html">Fish</a></li>
-      <li class="list-inline-item"><a href="tags.html">Food</a></li>
-      <li class="list-inline-item"><a href="tags.html">Nice</a></li>
-      <li class="list-inline-item"><a href="tags.html">Recipe</a></li>
-      <li class="list-inline-item"><a href="tags.html">Season</a></li>
-      <li class="list-inline-item"><a href="tags.html">Taste</a></li>
-      <li class="list-inline-item"><a href="tags.html">Tasty</a></li>
-      <li class="list-inline-item"><a href="tags.html">Vlog</a></li>
-      <li class="list-inline-item"><a href="tags.html">Wow</a></li> -->
     </ul>
   </div>
   

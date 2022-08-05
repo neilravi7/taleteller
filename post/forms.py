@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import Select, TextInput
-from post.models import Profile, Category, Article
+from post.models import Profile, Category, Article, Comment
 
 
 class CategoryForm(forms.ModelForm):
@@ -76,5 +76,41 @@ class ArticleSearchForm(forms.Form):
                 'placeholder':'Enter search term..',
                 'aria-label':"Enter search term...",
                 'aria-describedby':"button-search",
+            }
+        )
+
+
+class CommentForm(forms.ModelForm):
+    
+    class Meta:
+        model = Comment
+        fields = ['name', 'email', 'comment']
+        widgets = {
+            # 'article': forms.HiddenInput(),
+            'comment':forms.Textarea(attrs={'rows':2, 'cols':4})
+        }
+    
+    def __init__(self, *args, **kwarg):
+        super().__init__(*args, **kwarg)
+        for field in self.fields:
+            new_data = {
+                "class": 'form-control mb-3',
+            }
+            self.fields[str(field)].widget.attrs.update(
+                new_data
+            )
+        self.fields['comment'].widget.attrs.update(
+            {
+                "placeholder" :'Type your massage here'
+            }
+        )
+        self.fields['name'].widget.attrs.update(
+            {
+                "placeholder" :'Name'
+            }
+        )
+        self.fields['email'].widget.attrs.update(
+            {
+                "placeholder" :'Email'
             }
         )

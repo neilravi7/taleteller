@@ -4,17 +4,17 @@
   <!-- Column -->
   <div class="col-md-6 col-lg-6 col-xl-3">
       <div class="card m-b-30">
-          <div class="card-body">
+          <div class="card-body rounded bg-primary text-light">
               <div class="d-flex flex-row">
                   <div class="col-3 align-self-center">
                       <div class="round">
                           <i class="mdi mdi-webcam"></i>
                       </div>
                   </div>
-                  <div class="col-6 align-self-center text-center">
+                  <div class="col-3 align-self-center text-center">
                       <div class="m-l-10">
-                          <h5 class="mt-0 round-inner">Total Post</h5>
-                          <p class="mb-0 text-muted">{{articles|length}}</p>                                                                 
+                          <h5 class="mt-0 round-inner">{{articles|length}}</h5>
+                          <p class="mb-0">Post</p>                                                                 
                       </div>
                   </div>
               </div>
@@ -25,7 +25,7 @@
   <!-- Column -->
   <div class="col-md-6 col-lg-6 col-xl-3">
     <div class="card m-b-30">
-        <div class="card-body">
+        <div class="card-body rounded bg-success text-light">
             <div class="d-flex flex-row">
                 <div class="col-3 align-self-center">
                     <div class="round">
@@ -34,8 +34,8 @@
                 </div>
                 <div class="col-6 align-self-center text-center">
                     <div class="m-l-10">
-                        <h5 class="mt-0 round-inner">Published Post</h5>
-                        <p class="mb-0 text-muted">{{published_articles|length}}</p>                                                                 
+                        <h5 class="mt-0 round-inner">{{published_articles|length}}</h5>
+                        <p class="mb-0">Published</p>                                                                 
                     </div>
                 </div>
                 <!-- <div class="col-3 align-self-end align-self-center">
@@ -49,7 +49,7 @@
   <!-- Column -->
   <div class="col-md-6 col-lg-6 col-xl-3">
     <div class="card m-b-30">
-        <div class="card-body">
+        <div class="card-body rounded bg-warning text-light">
             <div class="d-flex flex-row">
                 <div class="col-3 align-self-center">
                     <div class="round">
@@ -58,8 +58,8 @@
                 </div>
                 <div class="col-6 align-self-center text-center">
                     <div class="m-l-10">
-                        <h5 class="mt-0 round-inner">Drafted Post</h5>
-                        <p class="mb-0 text-muted">{{drafted_articles|length}}</p>                                                                 
+                        <h5 class="mt-0 round-inner">{{drafted_articles|length}} </h5>
+                        <p class="mb-0">Drafted</p>                                                                 
                     </div>
                 </div>
                 <!-- <div class="col-3 align-self-end align-self-center">
@@ -73,7 +73,7 @@
   <!-- Column -->
   <div class="col-md-6 col-lg-6 col-xl-3">
     <div class="card m-b-30">
-        <div class="card-body">
+        <div class="card-body rounded bg-danger text-light">
             <div class="d-flex flex-row">
                 <div class="col-3 align-self-center">
                     <div class="round">
@@ -82,8 +82,8 @@
                 </div>
                 <div class="col-6 align-self-center text-center">
                     <div class="m-l-10">
-                        <h5 class="mt-0 round-inner">Deleted Post</h5>
-                        <p class="mb-0 text-muted">{{deleted_articles|length}}</p>                                                                 
+                        <h5 class="mt-0 round-inner">{{deleted_articles|length}}</h5>
+                        <p class="mb-0">Deleted</p>                                                                 
                     </div>
                 </div>
                 <!-- <div class="col-3 align-self-end align-self-center">
@@ -97,6 +97,19 @@
 </div>
 {% endblock %}
 {% block content %}
+{% if articles|length == 0%}
+<div class="col-sm-12 align-self-center text-center">
+  <div class="card widget">
+    <div class="card-body">
+      <h5 class="card-title text-muted">Welcome {{request.user.username}}</h5>
+      <p class="card-text"><strong>You haven't create any post.</strong></p>
+      <p>You can create an post by clicking on Create New Post Button</p>
+      <p>Also can write, edit, or delete posts and drafts any time.</p>
+      <a href="{% url 'post:article_create' %}" class="btn btn-success btn-lg">Create Post</a>
+    </div>
+  </div>
+</div>
+{% else %}
 {% for article in articles %}
 <div class="card mb-2">
   <div class="row g-0">
@@ -105,7 +118,7 @@
     </div>
     <div class="col-md-6">
       <div class="card-body">
-        <h4 class="card-title">{{article.title}}</h4>
+        <h4><a class="post-title" href="{{article.get_absolute_url}}">{{article.title}}</a></h4>
         <div class="d-flex p-1 ">
           <ul class="card-meta list-inline mb-0">
             <li class="list-inline-item mb-0">
@@ -246,11 +259,54 @@
   </div>
 </div>
 {% endfor %}
-
+<!-- Pagination Ki Ganit -->
+<nav aria-label="Pagination">
+    <hr class="my-0" />
+    <ul class="pagination justify-content-center my-4">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" aria-disabled="true">Newer</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+        </li>
+        {% endif %}
+        {% with ''|center:page_obj.paginator.num_pages as range %}
+        {% for _ in range %}
+            {% if forloop.counter == page_obj.number %}
+                <li class="page-item active">
+                    <a class="page-link" href="?page={{ forloop.counter }}">
+                        {{ forloop.counter }}
+                    </a>
+                </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ forloop.counter }}">
+                    {{ forloop.counter }}
+                </a>
+            </li>
+            {% endif%}
+        {% endfor %}
+        {% endwith %}
+        
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Older</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Older</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+<!-- Pagination ki ganit end  -->
+{% endif %}
 <!-- All Post Content End -->
 {% endblock %}
 {% block aside%}
-<div class="widget widget-about">
+<div class="widget widget-about shadow-lg">
   <h4 class="widget-title">Hi, I am {{request.user.username}}!</h4>
   <img class="rounded-circle img-fluid" style="width: 150px;" src="{{request.user.authors_profile.image}}" alt="avatar">
   <div class="d-flex justify-content-center mb-1">
