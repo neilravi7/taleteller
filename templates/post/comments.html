@@ -1,0 +1,56 @@
+<section style="background-color: #e7effd;">
+    <div class="container my-5 py-5 text-dark">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-11">
+                <div class="d-flex">
+                    <form method="POST" action="{% url 'post:create_comment' article.slug %}" class="needs-validation mb-4 row" novalidate="" autocomplete="off">
+                        {% csrf_token %}
+                        <div class="col-md-6">
+                            {{comment_form.name}}
+                        </div>
+                        <div class="col-md-6">
+                            {{comment_form.email}}
+                        </div>
+                        <div class="col-12">
+                            {{comment_form.comment}}
+                            <!-- <textarea name="message" id="message" class="form-control mb-3" placeholder="Type You Message Here" rows="5"></textarea> -->
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                {% for comm in comments %}
+                <div class="d-flex flex-start">
+                    <img class="rounded-circle shadow-1-strong me-3"
+                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp" alt="avatar" width="65"
+                        height="65" />
+                    <div class="card w-100 mb-2">
+                        <div class="card-body p-4">
+                            <div class="">
+                                <h5> {{comm.name}} </h5>
+                                <p class="small">{{comm.date_created}}</p>
+                                <p>
+                                    {{comm.comment}}
+                                </p>
+
+                                <!-- <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <a href="#!" class="link-muted me-2"><i
+                                                class="fas fa-thumbs-up me-1"></i>158</a>
+                                        <a href="#!" class="link-muted"><i class="fas fa-thumbs-down me-1"></i>13</a>
+                                    </div>
+                                    <a href="#!" class="link-muted"><i class="fas fa-reply me-1"></i> Reply</a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
