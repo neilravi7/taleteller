@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'post.apps.PostConfig',
     # third party apps
-    "taggit",
+    'taggit',
+    'rest_framework',
+    
     
 ]
 

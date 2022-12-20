@@ -17,6 +17,14 @@ def count_words(html_string):
 
 
 def read_time(html_string):
+    """Calculate reading time.
+
+    Args:
+        html_string (_str_): article.body (title, slug and body)
+
+    Returns:
+        _int_: return an integer number as minutes
+    """    
     count = count_words(html_string)
     read_time_min = math.ceil(count/200.0) #assuming 200wpm reading
     # read_time_sec = read_time_min * 60
@@ -25,4 +33,12 @@ def read_time(html_string):
     return int(read_time_min)
 
 def text_to_paragraph(text_content):
+    """Split one paragraph into some small paragraph.
+
+    Args:
+        text_content (_str_): a whole paragraph (an unmanaged text paragraph) 
+
+    Returns:
+        _str_: return an list contains small paragraph.
+    """    
     return text_content.split("\r\n\r\n")

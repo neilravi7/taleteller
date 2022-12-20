@@ -7,7 +7,6 @@ from . import Article
 
 
 class Comment(models.Model):
-
     name = models.CharField(max_length=250, null=False, blank=False)
     email = models.EmailField()
     comment = models.TextField(null=False, blank=False)
