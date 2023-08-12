@@ -1,3 +1,5 @@
+
+
 .nav-head {
     padding-top: 25px;
     padding-bottom: 25px;
@@ -8,11 +10,18 @@
     background: linear-gradient(114.1501577487deg, #18b2b8 4.9296141814%, #245fc7 97.838894682%);
 }
 
-.gradient-custom { /* fallback for old browsers */ background: #4facfe; /* Chrome 10-25,
-    Safari 5.1-6 */ background: -webkit-linear-gradient(to bottom right, rgba(79, 172, 254,
-    1), rgba(0, 242, 254, 1)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+,
-    Safari 7+ */ background: linear-gradient(to bottom right, rgba(79, 172, 254, 1), rgba(0,
-    242, 254, 1)) }
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #4facfe;
+    /* Chrome 10-25,
+    Safari 5.1-6 */
+    background: -webkit-linear-gradient(to bottom right, rgba(79, 172, 254,
+                1), rgba(0, 242, 254, 1));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+,
+    Safari 7+ */
+    background: linear-gradient(to bottom right, rgba(79, 172, 254, 1), rgba(0,
+                242, 254, 1))
+}
 
 /* Card Elements */
 
