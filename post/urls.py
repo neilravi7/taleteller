@@ -5,7 +5,7 @@ app_name = 'post'
 urlpatterns = [
     # =================== Article views ========================================================== 
     path('errors/', views.error_500_pages, name="errors"),
-    re_path(r'^.*$', views.error_404_pages, name="errors"),
+    # re_path(r'^.*$', views.error_404_pages, name="errors"),
     path('', views.ArticleListView.as_view(), name='home'),
     path('search/', views.ArticleSearchListView.as_view(), name='search'),
     path('create/', views.ArticleView.as_view(), name='article_create'),
