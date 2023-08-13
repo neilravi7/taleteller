@@ -10,6 +10,11 @@
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static 'css/zephyr.css' %}" rel="stylesheet" />
     <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            background: linear-gradient(114.1501577487deg, #18b2b8 4.9296141814%, #245fc7 97.838894682%);
+        }
+    </style>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -17,14 +22,15 @@
 
 <body>
     <section class="h-100">
-        <div class="container h-100">
-            <div class="row justify-content-sm-center h-100">
-                <div class="col-md-7 col-sm-9">
-                    <div class="text-center my-3">
+        <div class="container d-flex align-items-center justify-content-center vh-100">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="text-center">
                         <h6>{% block head %} {% endblock %}</h6>
                     </div>
                     <div class="card shadow-lg">
-                        <div class="card-body p-5">
+                        <div class="card-body p-3">
+                            <a class="btn btn-sm btn-dark me-2" href='{% url "post:home" %}'>Back</a>
                             <h1 class="fs-4 card-title fw-bold mb-4">{% block cardtitle %}{% endblock %}</h1>
                             {% block form_content %}
                             {% endblock %}
@@ -37,15 +43,15 @@
 -->
                         </div>
                     </div>
-                    <div class="text-center mt-5 text-muted">
+                    <!-- <div class="text-center mt-5 text-muted">
                         Copyright &copy; 2017-2021 &mdash; Your Company
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="js/login.js"></script>
+    <script src="{% static 'js/login.js' %}"></script>
 </body>
 
 </html>

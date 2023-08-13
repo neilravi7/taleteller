@@ -1,10 +1,11 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 app_name = 'post'
 urlpatterns = [
     # =================== Article views ========================================================== 
-    path('errors/', views.error_pages, name="errors"),
+    path('errors/', views.error_500_pages, name="errors"),
+    re_path(r'^.*$', views.error_404_pages, name="errors"),
     path('', views.ArticleListView.as_view(), name='home'),
     path('search/', views.ArticleSearchListView.as_view(), name='search'),
     path('create/', views.ArticleView.as_view(), name='article_create'),

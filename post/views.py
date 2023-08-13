@@ -21,7 +21,10 @@ from taggit.models import Tag
 """=========================================================================="""
 
 
-def error_pages(request):
+def error_404_pages(request):
+    return render(request, 'errors/errors.html', {"response_code":404, "response_message":"Page Not Found"})
+
+def error_500_pages(request):
     return render(request, 'errors/errors.html')
 
 

@@ -1,12 +1,13 @@
 {% extends 'form_base.html' %}
 {% block title %}Create Post{% endblock %}
 {% block form_content %}
-<!--    <h1 class="fs-4 card-title mb-4">Profile</h1>-->
+
+<h1 class="fs-4 card-title mb-4 text-center">Update Post</h1>
 <div class="row">
     <form method="POST" class="needs-validation shadow" novalidate="" autocomplete="off">
         {% csrf_token %}
         {{ form.non_field_errors }}
-        <h1 class="fs-4 card-title mb-1">Create Post:</h1>
+        <!-- <h1 class="fs-4 card-title mb-1">Create Post:</h1> -->
         <!-- "category", "title", "image_credit", "body", "tags", -->
         <div class="row g-3">
             <div class="col-5">
@@ -66,8 +67,8 @@
             </div>
 
         </div>
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" class="btn btn-warning btn-lg">
+        <div class="d-grid gap-2 col-6 m-auto mt-5 w-75">
+            <button type="submit" class="btn btn-warning btn-lg" formnovalidate>
                 Update
             </button>
         </div>
