@@ -41,14 +41,14 @@ Taleteller is a powerful blogging platform that empowers users to create, write,
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/taleteller.git
-   Navigate to the project directory
+   # Navigate to the project directory
    cd taleteller
-   Install project dependencies:
+   # Install project dependencies:
    pip install -r requirements.txt
-   Configure the database settings in settings.py.
-   Apply database migrations:
+   # Configure the database settings in settings.py.
+   # Apply database migrations:
    python manage.py migrate
-   Start the development server:
+   # Start the development server:
    python manage.py runserver
-   Access the application in your web browser at http://localhost:8000.
+   # Access the application in your web browser at http://localhost:8000.
    
