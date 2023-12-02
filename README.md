@@ -4,18 +4,26 @@ Taleteller is a powerful blogging platform that empowers users to create, write,
 
 ## Screenshots
 
+**Author Profile**
+
+![Screenshot 2023-12-02 205447](https://github.com/neilravi7/taleteller/assets/63995407/aa6cf5d6-d959-4db0-a26d-d10733a55612)
+
+**Create and Update Post**
+
+![Screenshot 2023-12-02 205300](https://github.com/neilravi7/taleteller/assets/63995407/fe167aca-393f-4e5b-8b81-8a8f8295edb1)
+![Screenshot 2023-12-02 205300](https://github.com/neilravi7/taleteller/assets/63995407/8694456d-baca-4f2f-970e-a6cb603a58b2)
+
 **Blog Home Page**
+
 ![Screenshot 2023-12-02 155837](https://github.com/neilravi7/taleteller/assets/63995407/9cfeabda-c559-4354-964e-80b5a3cf7c36)
 
 **Blog Detail Page**
+
 ![Screenshot 2023-12-02 160437](https://github.com/neilravi7/taleteller/assets/63995407/d83df73c-8eb9-4514-9c1f-f579b59cab50)
 
 **Comment Section**
-![Screenshot 2023-12-02 160545](https://github.com/neilravi7/taleteller/assets/63995407/d4d4890d-8604-4ec0-babe-f1bdf567c4e1)
 
-**Authentication**
-![Screenshot 2023-12-02 160721](https://github.com/neilravi7/taleteller/assets/63995407/9279b3b2-5641-4245-be62-c75ce6c1ea68)
-![Screenshot 2023-12-02 160639](https://github.com/neilravi7/taleteller/assets/63995407/01b15e31-98a0-4563-9bc2-572e4fd06f56)
+![Screenshot 2023-12-02 160545](https://github.com/neilravi7/taleteller/assets/63995407/d4d4890d-8604-4ec0-babe-f1bdf567c4e1)
 
 ## Features
 
