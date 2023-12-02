@@ -1,6 +1,21 @@
-# Taleteller: A Blogging Platform
+![Screenshot 2023-12-02 160545](https://github.com/neilravi7/taleteller/assets/63995407/e2c6a1b8-8822-436d-a2db-1597e10684c2)# Taleteller: A Blogging Platform
 
 Taleteller is a powerful blogging platform that empowers users to create, write, and share captivating articles on a wide range of topics. Whether you're a seasoned writer or just starting your blogging journey, Taleteller provides a user-friendly platform to express your thoughts and engage with a global community of readers.
+
+## Screenshots
+
+**Blog Home Page**
+![Screenshot 2023-12-02 155837](https://github.com/neilravi7/taleteller/assets/63995407/9cfeabda-c559-4354-964e-80b5a3cf7c36)
+
+**Blog Detail Page**
+![Screenshot 2023-12-02 160437](https://github.com/neilravi7/taleteller/assets/63995407/d83df73c-8eb9-4514-9c1f-f579b59cab50)
+
+**Comment Section**
+![Screenshot 2023-12-02 160545](https://github.com/neilravi7/taleteller/assets/63995407/d4d4890d-8604-4ec0-babe-f1bdf567c4e1)
+
+**Authentication**
+![Screenshot 2023-12-02 160721](https://github.com/neilravi7/taleteller/assets/63995407/9279b3b2-5641-4245-be62-c75ce6c1ea68)
+![Screenshot 2023-12-02 160639](https://github.com/neilravi7/taleteller/assets/63995407/01b15e31-98a0-4563-9bc2-572e4fd06f56)
 
 ## Features
 
