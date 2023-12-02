@@ -10,7 +10,8 @@ Taleteller is a powerful blogging platform that empowers users to create, write,
 
 **Create and Update Post**
 
-![Screenshot 2023-12-02 205300](https://github.com/neilravi7/taleteller/assets/63995407/fe167aca-393f-4e5b-8b81-8a8f8295edb1)
+![Screenshot 2023-12-02 205220](https://github.com/neilravi7/taleteller/assets/63995407/08902679-c9e1-4b47-b688-0ab874e04f96)
+
 ![Screenshot 2023-12-02 205300](https://github.com/neilravi7/taleteller/assets/63995407/8694456d-baca-4f2f-970e-a6cb603a58b2)
 
 **Blog Home Page**
